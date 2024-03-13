@@ -17,9 +17,10 @@ ____
 3. Проверка сетевых подключений. Выгрузка конфигураций
 ___
 
-## 1. Выполним первое подключение к роутеру и проверим конфигурации оборудования "по-умолчанию"
+## 1. Выполним первое подключение к роутеру и проверим конфигурации оборудования по умолчанию
 
 **Топология сети**
+
 ![](Topology.png)
 
 **Первое подключение через консоль**
@@ -137,6 +138,41 @@ Directory of flash:/
 64016384 bytes total (59345929 bytes free)
 ```
 
+**Ознакомимся с конфигурацией VLAN 1**
+
+Из конфигурации по команде *show interface vlan 1* как и из команды *show running-config* видно, что интерфейс не активен, ip Address не задан. Можем увидеть MAC адрес 0060.3e37.1795
+А также МОРЕ служебной информации, о которой я очень надеюсь мне расскажут преподаватели на предстоящем курсе. 
+
+```
+Switch#show interface vlan 1
+Vlan1 is administratively down, line protocol is down
+  Hardware is CPU Interface, address is 0060.3e37.1795 (bia 0060.3e37.1795)
+  MTU 1500 bytes, BW 100000 Kbit, DLY 1000000 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 21:40:21, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     1682 packets input, 530955 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicast)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     563859 packets output, 0 bytes, 0 underruns
+     0 output errors, 23 interface resets
+     0 output buffer failures, 0 output buffers swapped out
+```
+
+Также из ранее запрошенных команд можно "вытащить" информацию о версии прошивки 15.0 и образе системы
+```
+1  -rw-     4670455          <no date>  2960-lanbasek9-mz.150-2.SE4.bin
+```
+
+**Познакомимся с командами *show interface f0/6* и комадной *show flash / dir flash***
 
 
   
