@@ -216,6 +216,13 @@ FastEthernet0/6 is down, line protocol is down (disabled)
      0 output buffer failures, 0 output buffers swapped out
 ```
 
+
+
+
+
+**2.2. Настроим адресацию хосте PC-A**
+
+![](PC-A-ip-conf.png)
   
 ## 3. Проверим и задокументируем итоговую конфигурацию коммутатора S1
 
