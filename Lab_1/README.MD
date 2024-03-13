@@ -1,19 +1,142 @@
 #### 0. Лабораторная работа. Базовая настройка коммутатора
 ____
 
-**Задачи лабораторной работы:**
-1. Проверка конфигурации коммутатора по умолчанию
-2. Создание сети и настройка основных параметров устройства
-3. Проверка сетевых подключений. Выгрузка конфигураций
-
 **Топология сети**
-![](Topology.png)
+![](init-data.png)
 
 **Таблица адресации**
 | Устройство | Интерфейс | IP-адрес / префикс |
 | ---------- |-----------| -------------------|
 | S1         |   VLAN 1  | 192.168.1.2 /24    |
 | PC-A       |    NIC    | 192.168.1.10 /24   |
+
+**Задачи лабораторной работы:**
+1. Проверка конфигурации коммутатора по умолчанию
+2. Создание сети и настройка основных параметров устройства
+3. Проверка сетевых подключений. Выгрузка конфигураций
+___
+
+##### 1. Выполним первое подключение к роутеру и проверим конфигурации оборудования "по-умолчанию"
+
+**Топология сети**
+![](Topology.png)
+
+**Первое подключение через консоль**
+В исходном состоянии оборудование не настроенно. Отсутствует конфигурация порта VLAN 1. Подключение по Telnet и SHH невозможно.
+Подключим консольный провод от роутера к COM порту PC (интерфейс RS-232) и откроем терминал
+
+**Ознакомимся с конфигурацией running-config**
+```
+Switch#show running-config
+Building configuration...
+
+Current configuration : 1080 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Switch
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+!
+!
+!
+line con 0
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end
+```
+На роутера имеется 24 порта Fa, 2 порта Gi, 1 интерфейс VLAN1 и 16 настраиваемых виртуальных линий vty
+
+**Проверим конфигурацию startup-config**
+Так как еще ни каких изменений в run-config не вносили, конфигурацию в startup-config не копировали, то в соответствующей директории памяти файл с конфигурацией startup отсутствует.
+```
+Switch#show startup-config
+startup-config is not present
+Switch#
+Switch#show flash
+Directory of flash:/
+
+    1  -rw-     4670455          <no date>  2960-lanbasek9-mz.150-2.SE4.bin
+
+64016384 bytes total (59345929 bytes free)
+```
+
+
+
+  
 
 **Проверка параметров startup-config**
 ```
