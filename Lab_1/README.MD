@@ -215,7 +215,7 @@ FastEthernet0/6 is down, line protocol is down (disabled)
      0 lost carrier, 0 no carrier
      0 output buffer failures, 0 output buffers swapped out
 ```
-
+## 1. Выполним начальную настройку оборудования
 
 **2.1. Произведем настройку коммутатора используя команды и режимы согласно методических материалов**
 
