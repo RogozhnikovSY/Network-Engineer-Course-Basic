@@ -16,7 +16,7 @@ ____
 | PC-A       |    NIC    | 192.168.1.10 /24   |
 
 **Выгрузка startup-config**
-'''
+```
 S1#show startup-config
 Using 1351 bytes
 !
@@ -116,4 +116,4 @@ line vty 5 15
 !
 !
 end
-'''
+```
