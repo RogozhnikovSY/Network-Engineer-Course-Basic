@@ -227,3 +227,9 @@ FastEthernet0/1 is up, line protocol is up (connected)
      0 lost carrier, 0 no carrier
      0 output buffer failures, 0 output buffers swapped out
 ```
+Первая строка **FastEthernet0/1 is up, line protocol is up (connected)** означает, что интерфейсы обоих коммутаторов работают нормально и имеет состояние UP.
+
+Зашитый **адрес BIA** на коммутаторе **S1** - **000a.f38c.3101**
+Зашитый **адрес BIA** на коммутаторе **S1** - **0001.c794.6701**
+
+Информация по MAC адресам при команде **show interface F0/1** отсутствует
