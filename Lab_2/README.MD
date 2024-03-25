@@ -121,8 +121,8 @@ S2#
 
 **2. Изученим таблицы MAC-адресов коммутатора**
 
-2.1 Введем команду на PC-A ***ipconfig /all***
-
+2.1 Команда на PC-A ***ipconfig /all***\
+Введем команду на PC-A ***ipconfig /all***\
 И увидим конфигурацию. IP адрес, MAC адрес устройства, маску подсети, и также адрес и префикс IPv6
 ```
 C:\>ipconfig /all
@@ -163,7 +163,7 @@ FastEthernet0 Connection:(default port)
    DNS Servers.....................: ::
                                      0.0.0.0
 ```
-2.2 Подключимся через консоль и введем команду ***show interface F0/1***
+Подключимся через консоль и введем команду ***show interface F0/1***
 ```
 setup s1 for Lab-2
 
@@ -232,4 +232,107 @@ FastEthernet0/1 is up, line protocol is up (connected)
 Зашитый **адрес BIA** на коммутаторе **S1** - **000a.f38c.3101**\
 Зашитый **адрес BIA** на коммутаторе **S1** - **0001.c794.6701**
 
-Информация по MAC адресам при команде **show interface F0/1** отсутствует
+2.2 Просмотрим таблицу MAC-адресов коммутатора\
+
+Подключимся к коммутатору S2 через консоль и просмотрим таблицу MAC-адресов
+```
+S2>en
+Password: 
+S2#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+
+   1    000a.f38c.3101    DYNAMIC     Fa0/1
+S2#
+```
+В таблице мы видим MAC-адрес 000a.f38c.3101 привязанный к порту Fa0/1
+
+2.3 Очистка таблицы MAC-адресов\
+В привелегированном режиме EXEC введем команду ***clear Mac address-table dymnamic*** затем обновим данные по уже знакомой команде ***show Mac address-table***\
+Посмотрим новый отчет по MAC-адресам\
+И затем снова введем команду ***show Mac address-table***\
+```
+S2#clear mac address-table dynamic
+S2#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+
+S2#
+S2#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+
+   1    000a.f38c.3101    DYNAMIC     Fa0/1
+S2#
+```
+Мы можем увидеть что таблица MAC адресов сначала очистилась, потом обновилась и MAC-вдрес вновь записался
+
+2.4 Эхо-запросы
+Введем в командной строке на хосте PC-B команду ***arp -a***\
+Изначально какие либо записи отсутствуют
+
+Отправим с командной строки хоста PC-B эхо запрос на узел PC-A
+```
+C:\>ping 192.168.1.1
+
+Pinging 192.168.1.1 with 32 bytes of data:
+
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=128
+Reply from 192.168.1.1: bytes=32 time=1ms TTL=128
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=128
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.1.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 1ms, Average = 0ms
+```
+на узел S2
+
+```
+C:\>ping 192.168.1.12
+
+Pinging 192.168.1.12 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.1.12:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+```
+на узел S1
+
+```
+C:\>ping 192.168.1.11
+
+Pinging 192.168.1.11 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.1.11:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+```
+Видно, что зхо запросы приходят только на узел PC-A IP 192.168.1.1\
+Запросы на узлы S1 и S2 остались без ответа
+
+Обновим команду ***arp -a***\
+Теперь у нас есть информация по MAC адрес устройства PC-A
+```
+C:\>arp -a
+  Internet Address      Physical Address      Type
+  192.168.1.1           00d0.58e8.5e5c        dynamic
+```
