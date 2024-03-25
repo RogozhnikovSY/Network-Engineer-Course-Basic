@@ -121,4 +121,45 @@ S2#
 
 **2. Изученим таблицы MAC-адресов коммутатора**
 
+2.1 Введем команду на PC-A ***ipconfig /all***
 
+И увидим конфигурацию. IP адрес, MAC адрес устройства, маску подсети, и также адрес и префикс IPv6
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 00D0.58E8.5E5C
+   Link-local IPv6 Address.........: FE80::2D0:58FF:FEE8:5E5C
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.1.1
+   Subnet Mask.....................: 255.255.255.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-CD-34-95-8B-00-D0-58-E8-5E-5C
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
+Такую же процедуру проведем с хостом PC-В
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 00D0.D3CA.3934
+   Link-local IPv6 Address.........: FE80::2D0:D3FF:FECA:3934
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.1.2
+   Subnet Mask.....................: 255.255.255.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-08-D6-62-89-00-D0-D3-CA-39-34
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
