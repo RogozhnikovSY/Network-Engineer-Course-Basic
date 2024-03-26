@@ -336,3 +336,71 @@ C:\>arp -a
   Internet Address      Physical Address      Type
   192.168.1.1           00d0.58e8.5e5c        dynamic
 ```
+____
+**РАБОТА НАД ОШИБКАМИ**
+Активируем VLAN 1 на обоих коммутаторах 
+```
+setap s1 for lab-2
+
+S1>en
+Password: 
+S1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#int vlan 1
+S1(config-if)#no shutdown
+
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
+S1(config-if)#exit
+S1(config)#wr
+           ^
+% Invalid input detected at '^' marker.
+	
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+wr
+Building configuration...
+[OK]
+S1#
+```
+
+и повторим команды ping на узлы S1 и S2\
+**обновленный ping на S1**
+```
+C:\>ping 192.168.1.11
+
+Pinging 192.168.1.11 with 32 bytes of data:
+
+Request timed out.
+Reply from 192.168.1.11: bytes=32 time<1ms TTL=255
+Reply from 192.168.1.11: bytes=32 time<1ms TTL=255
+Reply from 192.168.1.11: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.1.11:
+    Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
+**обновленный ping на S1**
+```
+C:\>ping 192.168.1.12
+
+Pinging 192.168.1.12 with 32 bytes of data:
+
+Request timed out.
+Reply from 192.168.1.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.1.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.1.12: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.1.12:
+    Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
+
+
+
