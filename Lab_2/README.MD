@@ -356,10 +356,6 @@ S1(config-if)#
 %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
 S1(config-if)#exit
-S1(config)#wr
-           ^
-% Invalid input detected at '^' marker.
-	
 S1(config)#exit
 S1#
 %SYS-5-CONFIG_I: Configured from console by console
