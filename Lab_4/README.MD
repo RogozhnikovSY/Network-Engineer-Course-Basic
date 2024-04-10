@@ -61,4 +61,7 @@ Building configuration...
 [OK]
 R1#
 ```
+**Модель сети**
+![](Img-2.png)
+
 
