@@ -169,4 +169,76 @@ Vlan1                      [up/down]
     unassigned
 R1#
 ```
+2.5. Проверим данные IPv6-адреса на PC-B
+```
+Cisco Packet Tracer PC Command Line 1.0
+C:\>ipconfig
 
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::2E0:8FFF:FEE6:C937
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+C:\>
+```
+На интерфейсе задан локальный адрес\
+Link-local IPv6 Address.........: FE80::2E0:8FFF:FEE6:C937\
+Глобальный адрес отсутствует
+
+2.6. Активируем IPv6-маршрутизацию на R1 c помощью команды **IPv6 unicast-routing**
+```
+R1>en
+Password: 
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#IPv6 unicast-routing
+R1(config)#end
+R1#
+%SYS-5-CONFIG_I: Configured from console by console
+wr
+Building configuration...
+[OK]
+R1#
+```
+2.7. Обновим данные IPv6-адреса на PC-B
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::2E0:8FFF:FEE6:C937
+   IPv6 Address....................: 2001:DB8:ACAD:A:2E0:8FFF:FEE6:C937
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+C:\>
+```
+PC-B получил глобальный адрес и данные шлюза.
