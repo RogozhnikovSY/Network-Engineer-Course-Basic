@@ -242,3 +242,4 @@ Bluetooth Connection:
 C:\>
 ```
 PC-B получил глобальный адрес и данные шлюза.
+Sdfsdfsdf
