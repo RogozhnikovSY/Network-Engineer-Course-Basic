@@ -243,3 +243,56 @@ C:\>
 ```
 PC-B получил глобальный адрес и данные шлюза.
 
+
+2.8. Назначим IPv6-адрес для SVI на S1 и назначим этому интерфейсу локальный адрес канала fe80::b
+```
+S1>en
+Password: 
+S1#int vlan 1
+       ^
+% Invalid input detected at '^' marker.
+	
+S1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#int vlan 1
+S1(config-if)#ipv6 add
+S1(config-if)#ipv6 address 2001:db8:acad:1::3/64
+S1(config-if)#no shu
+S1(config-if)#no shutdown 
+
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+ipv6 add
+S1(config-if)#ipv6 address fe80::b li
+S1(config-if)#ipv6 address fe80::b link-local 
+S1(config-if)#
+```
+Проверим правильность назначения IPv6-адресов интерфейсу управления с помощью команды **show IPv6 interface vlan 1**
+```
+S1(config-if)#do show ipv6 interface vlan 1
+Vlan1 is up, line protocol is up
+  IPv6 is enabled, link-local address is FE80::B
+  No Virtual link-local address(es):
+  Global unicast address(es):
+    2001:DB8:ACAD:1::3, subnet is 2001:DB8:ACAD:1::/64
+  Joined group address(es):
+    FF02::1
+    FF02::1:FF00:3
+    FF02::1:FF00:B
+  MTU is 1500 bytes
+  ICMP error messages limited to one every 100 milliseconds
+  ICMP redirects are enabled
+  ICMP unreachables are sent
+  Output features: Check hwidb
+  ND DAD is enabled, number of DAD attempts: 1
+  ND reachable time is 30000 milliseconds
+S1(config-if)#end
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+wr
+Building configuration...
+[OK]
+S1#
+```
