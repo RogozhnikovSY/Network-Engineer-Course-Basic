@@ -408,3 +408,46 @@ Bluetooth Connection:
 
 C:\>
 ```
+**3. Проверим сквозное подключение**
+
+Отправим эхо запрос на fe80::1
+
+```
+C:\>ping fe80::1
+
+Pinging fe80::1 with 32 bytes of data:
+
+Reply from FE80::1: bytes=32 time=18ms TTL=128
+Reply from FE80::1: bytes=32 time<1ms TTL=128
+Reply from FE80::1: bytes=32 time=21ms TTL=128
+Reply from FE80::1: bytes=32 time=11ms TTL=128
+
+Ping statistics for FE80::1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 21ms, Average = 12ms
+
+C:\>
+```
+Отправим эхо запрос на S1 c PC-A
+```
+C:\>ping fe80::b
+
+Pinging fe80::b with 32 bytes of data:
+
+Reply from FE80::B: bytes=32 time=2003ms TTL=255
+Reply from FE80::B: bytes=32 time<1ms TTL=255
+Reply from FE80::B: bytes=32 time<1ms TTL=255
+Reply from FE80::B: bytes=32 time<1ms TTL=255
+
+Ping statistics for FE80::B:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 2003ms, Average = 500ms
+
+C:\>
+```
+Введем команду **tracert** на PC-A
+```
+
+```
