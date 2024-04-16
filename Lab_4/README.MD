@@ -299,6 +299,7 @@ S1#
 2.9. Назначим адресацию для каждого ПК
 
 Сначала зададим автоматическое присвоение IPv6 на PC-A и проверим конфигурацию
+
 ![](Img-3.png)
 ```
 C:\>ipconfig
@@ -326,6 +327,7 @@ Bluetooth Connection:
 C:\>
 ```
 Затем укажем IPv6 на PC-A вручную и проверим конфигурацию
+
 ![](Img-4.png)
 ```
 C:\>ipconfig
@@ -338,6 +340,60 @@ FastEthernet0 Connection:(default port)
    IPv4 Address....................: 0.0.0.0
    Subnet Mask.....................: 0.0.0.0
    Default Gateway.................: ::
+                                     0.0.0.0
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+C:\>
+```
+Повторим действия для PC-B
+
+![](Img-5.png)
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::2E0:8FFF:FEE6:C937
+   IPv6 Address....................: 2001:DB8:ACAD:A:2E0:8FFF:FEE6:C937
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+C:\>
+```
+![](Img-6.png)
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
                                      0.0.0.0
 
 Bluetooth Connection:
