@@ -449,5 +449,29 @@ C:\>
 ```
 Введем команду **tracert** на PC-A
 ```
-ПРИВЕТ ВСЕМ
+НЕ ПОЛУЧАЕТСЯ!!!
+```
+
+Отправим с PC-B эхо запрос на PC-A
+```
+НЕ ПОЛУЧАЕТСЯ!!!
+```
+
+Отправим с PC-B эхо запрос на локальный адрес канала G0/0 на R1
+```
+C:\>ping 2001:db8:acad:a::1
+
+Pinging 2001:db8:acad:a::1 with 32 bytes of data:
+
+Reply from 2001:DB8:ACAD:A::1: bytes=32 time<1ms TTL=255
+Reply from 2001:DB8:ACAD:A::1: bytes=32 time<1ms TTL=255
+Reply from 2001:DB8:ACAD:A::1: bytes=32 time<1ms TTL=255
+Reply from 2001:DB8:ACAD:A::1: bytes=32 time<1ms TTL=255
+
+Ping statistics for 2001:DB8:ACAD:A::1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+C:\>
 ```
